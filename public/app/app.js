@@ -10,7 +10,27 @@ app.config(['$logProvider', '$routeProvider', function ($logProvider, $routeProv
         .when('/', {
             controller: 'HomeController',
             controllerAs: 'home',
-            template: '<h1>This is an inline template</h1>',
             templateUrl: 'app/templates/home.html'
-        });
+        })
+		.when('/schools', {
+			controller: 'AllSchoolsController',
+			controllerAs: 'schools',
+			templateUrl: '/app/templates/allSchools.html'
+		})
+		.when('/classrooms/:id', {
+			controller: 'AllClassroomsController',
+			controllerAs: 'classrooms',
+			templateUrl: 'app/templates/allClassrooms.html',
+			redirectTo: function (params, currPath, currSearch) {
+				console.log(params);
+				console.log(currPath);
+				console.log(currSearch);
+				return '/';
+			}
+		})
+		.when('/activities', {
+			controller: 'AllActivitiesController',
+			controllerAs: 'activities',
+			templateUrl: '/app/templates/allActivities.html'
+		});
 }]);
