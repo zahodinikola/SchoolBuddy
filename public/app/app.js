@@ -17,20 +17,15 @@ app.config(['$logProvider', '$routeProvider', function ($logProvider, $routeProv
 			controllerAs: 'schools',
 			templateUrl: '/app/templates/allSchools.html'
 		})
-		.when('/classrooms/:id', {
+		.when('/classrooms', {
 			controller: 'AllClassroomsController',
 			controllerAs: 'classrooms',
 			templateUrl: 'app/templates/allClassrooms.html',
-			redirectTo: function (params, currPath, currSearch) {
-				console.log(params);
-				console.log(currPath);
-				console.log(currSearch);
-				return '/';
-			}
 		})
 		.when('/activities', {
 			controller: 'AllActivitiesController',
 			controllerAs: 'activities',
 			templateUrl: '/app/templates/allActivities.html'
-		});
+		})
+		.otherwise('/');
 }]);
