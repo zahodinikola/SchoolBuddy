@@ -15,12 +15,20 @@ app.config(['$logProvider', '$routeProvider', function ($logProvider, $routeProv
 		.when('/schools', {
 			controller: 'AllSchoolsController',
 			controllerAs: 'schools',
-			templateUrl: '/app/templates/allSchools.html'
+			templateUrl: '/app/templates/allSchools.html',
+/* 			caseInsensitiveMatch: true */
 		})
-		.when('/classrooms', {
+		.when('/classrooms', { /* /:id', { */
 			controller: 'AllClassroomsController',
 			controllerAs: 'classrooms',
-			templateUrl: 'app/templates/allClassrooms.html',
+			templateUrl: 'app/templates/allClassrooms.html'
+/* 															,
+			redirectTo: function(params, currPath, currSearch) {
+				console.log(params);
+				console.log(currPath);
+				console.log(currSearch);
+				return '/';
+			} */
 		})
 		.when('/activities', {
 			controller: 'AllActivitiesController',
