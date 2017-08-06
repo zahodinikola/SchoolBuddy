@@ -1,15 +1,18 @@
 'use strict';
 
-app.controller('HomeController', ['dataService', 'notifier', 
-	function HomeController(dataService, notifier) {
+app.controller('HomeController', ['dataService', 'notifier', '$route', '$log',
+	function HomeController(dataService, notifier, $route, $log) {
 			
 			var vm = this;
 			
 			vm.message = "Welcome to school, buddy!";
 			
 			vm.refresh = function() {
-				$log.debug($state.current);
-				$state.reload();
+				// $log.debug($state.current);
+				// $state.reload();
+				console.log($route.current);
+				console.log($route.routes);
+				$route.reload();
 			};
 			
 			dataService.getAllSchools()
