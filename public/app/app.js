@@ -2,10 +2,20 @@
 
 var app = angular.module('app', ['ngRoute']);
 
-app.config(['$logProvider', '$routeProvider', function ($logProvider, $routeProvider) {
+app.config(['$logProvider', '$routeProvider', '$locationProvider', function ($logProvider, $routeProvider, $locationProvider) {
     
-    $logProvider.debugEnabled(true);
-    
+	$logProvider.debugEnabled(true);
+	
+//	$locationProvider.hashPrefix('!');
+
+	// $locationProvider.html5Mode({
+	// 	enabled: true,
+	// 	requireBase: true,
+	// 	rewriteLinks: true
+	// });
+	
+	$locationProvider.html5Mode(true);
+
     $routeProvider
         .when('/', {
             controller: 'HomeController',

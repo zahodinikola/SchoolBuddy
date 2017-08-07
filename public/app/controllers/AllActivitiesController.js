@@ -5,10 +5,10 @@
                 ['$log', 'dataService', '$location', 'activities', AllActivitiesController]);
             // ['$log', '$state', 'dataService', 'notifier', 'activities', AllActivitiesController]);
 
-    function AllActivitiesController($log, dataService, activities, $location) {//$state, notifier, activities) {
+    function AllActivitiesController($log, dataService, $location, activities) {//$state, notifier, activities) {
 
         var vm = this;
-        vm.AllActivities = activities;
+        vm.allActivities = activities;
 
         vm.selectedMonth = 1; // default to January
 
