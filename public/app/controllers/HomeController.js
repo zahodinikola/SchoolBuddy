@@ -1,20 +1,21 @@
-'use strict';
+(function(){
 
-app.controller('HomeController', ['dataService', 'notifier', '$route', '$log',
-	function HomeController(dataService, notifier, $route, $log) {
+var app = angular.module('app', []);
+
+app.controller('HomeController', ['dataService', 'notifier', '$state', '$log', HomeController]);
+	
+function HomeController(dataService, notifier, $state, $log) {
 			
 			var vm = this;
 			
 			vm.message = "Welcome to school, buddy!";
-			
+
 			vm.refresh = function() {
-				// $log.debug($state.current);
-				// $state.reload();
-				console.log($route.current);
-				console.log($route.routes);
-				$route.reload();
+				$log.debug($state.current);
+				$state.reload();
 			};
 			
+						
 			dataService.getAllSchools()
 				.then(function(schools) {
 					vm.allSchools = schools;
@@ -39,5 +40,5 @@ app.controller('HomeController', ['dataService', 'notifier', '$route', '$log',
 			function showError(message) {
 				notifier.error(message);
 			}
-	}
-])
+	};
+}());
