@@ -1,44 +1,37 @@
 (function(){
 
-var app = angular.module('app', []);
-
-app.controller('HomeController', ['dataService', 'notifier', '$state', '$log', HomeController]);
-	
-function HomeController(dataService, notifier, $state, $log) {
-			
-			var vm = this;
-			
-			vm.message = "Welcome to school, buddy!";
-
-			vm.refresh = function() {
-				$log.debug($state.current);
-				$state.reload();
-			};
-			
-						
-			dataService.getAllSchools()
-				.then(function(schools) {
-					vm.allSchools = schools;
-					vm.schoolCount = schools.length;
-				})
-				.catch(showError);
+	angular.module('app')
+		.controller('HomeController', ['dataService', '$log', HomeController]);
+		
+	function HomeController(dataService, $log) {
 				
-			dataService.getAllClassrooms()
-				.then(function(classrooms) {
-					vm.allClassrooms = classrooms;
-					vm.classroomCount = classrooms.length;
-				})
-				.catch(showError);
+				var vm = this;
 				
-			dataService.getAllActivities()
-				.then(function(activities) {
-					vm.allActivities = activities;
-					vm.activityCount = activities.length;
-				})
-				.catch(showError);
-			
-			function showError(message) {
-				notifier.error(message);
-			}
-	};
+				vm.message = "Welcome to school, buddy!";
+							
+				dataService.getAllSchools()
+					.then(function(schools) {
+						vm.allSchools = schools;
+						vm.schoolCount = schools.length;
+					})
+					.catch(showError);
+					
+				dataService.getAllClassrooms()
+					.then(function(classrooms) {
+						vm.allClassrooms = classrooms;
+						vm.classroomCount = classrooms.length;
+					})
+					.catch(showError);
+					
+				dataService.getAllActivities()
+					.then(function(activities) {
+						vm.allActivities = activities;
+						vm.activityCount = activities.length;
+					})
+					.catch(showError);
+				
+				function showError(message) {
+					notifier.error(message);
+				}
+		};
 }());
