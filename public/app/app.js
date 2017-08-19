@@ -8,7 +8,42 @@
 		$stateProvider
 			.state('home', {
 				url: '/',
-				template: '<h1>here i am</h1>'
+				templateUrl: 'app/templates/home.html',
+				controller: 'HomeController',
+				controllerAs: 'home'
+			})
+			.state('schools', {
+				url: '/schools',
+				templateUrl: 'app/templates/allSchools.html',
+				controller: 'AllSchoolsController',
+				controllerAs: 'schools'
+			})
+			.state('classrooms', {
+				url: '/classrooms',
+				templateUrl: 'app/templates/allClassrooms.html',
+				controller: 'AllClassroomsController',
+				controllerAs: 'classrooms'
+			})
+			.state('activities', {
+				url: '/activities',
+				templateUrl: 'app/templates/allActivities.html',
+				controller: 'AllActivitiesController',
+				controllerAs: 'activities'
 			});
-	}]);	
+			
+	}]);
+		
+	app.run(['$log', '$rootScope', function($log, $rootScope) {
+
+		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+			alert('asdf');
+			$log.warn('successfully changed state');
+			$log.log('event', event);
+			$log.log('toState', toState);
+			$log.log('toParams', toParams);
+			$log.log('fromState', fromState);
+			$log.log('fromParams', fromParams);
+		});
+
+	}]);
 }());
