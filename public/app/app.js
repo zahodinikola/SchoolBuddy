@@ -51,19 +51,43 @@
 					myFoo: 'bar'
 				}
 			})
-			.state('classroom_summary', {
+			.state('classroom_parent', {
+				abstract: true,
 				url: '/classrooms/:id',
-				templateUrl: 'app/templates/classroom.html',
-				controller: 'ClassroomController',
-				controllerAs: 'classroom'
-			})
-			.state('classroom_detail', {
-				url: '/classrooms/{id}/detail/{month}',
-				templateUrl: 'app/templates/classroomDetail.html',
+				templateUrl: '/app/templates/classroom_parent.html',
 				controller: 'ClassroomController',
 				controllerAs: 'classroom',
 				params: {
-					classroomMessage: {value: 'Learning is fun!'}
+					classroomMessage: {value: 'coding is fun!'}
+				},
+				resolve: { 
+					classroom: function($stateParams, dataService) {
+									return dataService.getClassroom($stateParams.id);
+					}
+				}
+			})
+			
+			.state('classroom_parent.classroom_summary', {
+				url: '/summary',
+				views: {
+					'classInfo': {
+						templateUrl: '/app/templates/classroom.html',
+						controller: 'ClassroomSummaryController',
+						controllerAs: 'classroomSummary'
+					},
+					'classMessage': {
+						templateUrl: '/app/templates/classroom_message.html',
+						controller: 'ClassroomMessageController',
+						controllerAs: 'classroomMessage'
+					}
+				}
+			})
+			.state('classroom_parent.classroom_detail', {
+				url: '/detail/{month}',
+				views: {
+					'classInfo': {
+						templateUrl: 'app/templates/classroomDetail.html'
+					}
 				}
 			});
 			
