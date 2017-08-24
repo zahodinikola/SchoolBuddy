@@ -33,16 +33,21 @@
 			
 	}]);
 		
-	app.run(['$log', '$rootScope', function($log, $rootScope) {
+	app.run(['$rootScope', '$log', function($rootScope, $log) {
 
-		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-			alert('asdf');
-			$log.warn('successfully changed state');
-			$log.log('event', event);
-			$log.log('toState', toState);
-			$log.log('toParams', toParams);
-			$log.log('fromState', fromState);
-			$log.log('fromParams', fromParams);
+		$rootScope.$on('$stateChangeStart', 
+			function(event, toState, toParams, fromState, fromParams, options){ 
+    			console.log(event); 
+		});
+
+		$rootScope.$on('$stateChangeSuccess', 
+			function(event, toState, toParams, fromState, fromParams){
+				$log.warn('successfully changed state');
+				$log.log('event', event);
+				$log.log('toState', toState);
+				$log.log('toParams', toParams);
+				$log.log('fromState', fromState);
+				$log.log('fromParams', fromParams);
 		});
 
 	}]);
