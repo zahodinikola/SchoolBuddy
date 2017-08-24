@@ -14,11 +14,11 @@
             </tr>
             </thead>
             <tr ng-repeat="classroom in classrooms.allClassrooms">
-                <td><a ng-href="/#!/classrooms/{{classroom.id}}/detail">{{
+                <td><a ui-sref="classroom_detail({id: classroom.id})">{{
                     classroom.name
                     }}</a></td>
                 <td>{{ classroom.school.name }}</td>
-                <td><a ng-href="/#!/classrooms/{{classroom.id}}">{{ classroom.teacher
+                <td><a ui-sref="classroom_summary({id: classroom.id})">{{ classroom.teacher
                     }}</a></td>
             </tr>
         </table>
