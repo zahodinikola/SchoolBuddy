@@ -1,5 +1,7 @@
 ## Node
-**\node_modules
+**/node_modules
 
 ## Bower
-**\bower_components
+**/bower_components
+public/app/bower_components/angular/.bower.json
+public/app/bower_components/angular/package.json
