@@ -7,6 +7,7 @@
 
         var vm = this;
         vm.month = $stateParams.month;
+        vm.message = $stateParams.classroomMessage;
 
         dataService.getClassroom($stateParams.id)
             .then(function(classroom) {

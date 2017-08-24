@@ -25,13 +25,31 @@
 				url: '/classrooms',
 				templateUrl: 'app/templates/allClassrooms.html',
 				controller: 'AllClassroomsController',
-				controllerAs: 'classrooms'
+				controllerAs: 'classrooms',
+				onEnter: function($log) {
+					$log.info('entered state');
+				},
+				onExit: function($log) {
+					$log.info('leaved state');
+				}
 			})
 			.state('activities', {
 				url: '/activities',
 				templateUrl: 'app/templates/allActivities.html',
 				controller: 'AllActivitiesController',
-				controllerAs: 'activities'
+				controllerAs: 'activities',
+				resolve: {
+					activities: function(dataService) {
+						return dataService.getAllActivities();
+					}
+				},
+				data: {
+					name: 'MyActivities',
+					description: 'awsome'
+				},
+				foo: {
+					myFoo: 'bar'
+				}
 			})
 			.state('classroom_summary', {
 				url: '/classrooms/:id',
@@ -43,7 +61,10 @@
 				url: '/classrooms/{id}/detail/{month}',
 				templateUrl: 'app/templates/classroomDetail.html',
 				controller: 'ClassroomController',
-				controllerAs: 'classroom'
+				controllerAs: 'classroom',
+				params: {
+					classroomMessage: {value: 'Learning is fun!'}
+				}
 			});
 			
 	}]);
